@@ -21,7 +21,7 @@ function getData() {
 
         let newValue ='';
         data.forEach((_, index) => {
-            newValue = newValue + `<option value="${data[index].name}">${data[index].name}</option>`
+            newValue = newValue + `<option value="${data[index].id}">${data[index].name}</option>`
             
         })
 
@@ -57,7 +57,10 @@ function getData() {
 }getData()
 
 myBtn.addEventListener('click',function(e) {
-    fetch(url1).then((response) => {
+    const crypto = document.getElementById("crypto").value;
+    const countryCurrency = document.getElementById("countryCurrency").value
+    const newUrl =`https://api.coingecko.com/api/v3/simple/price?ids=${crypto}&vs_currencies=${countryCurrency}`
+    fetch(newUrl).then((response) => {
         console.log(response);
         return response.json();
     }).then((response) => {
